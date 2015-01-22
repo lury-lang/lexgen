@@ -7,7 +7,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Lury.Lexgen</RootNamespace>
     <AssemblyName>lexgen</AssemblyName>
-    <StartupObject>lexgen.MainClass</StartupObject>
+    <StartupObject>Lury.Lexgen.MainClass</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
