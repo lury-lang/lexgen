@@ -26,11 +26,47 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
 using System.Runtime.Serialization;
 
 namespace Lury.Lexgen
 {
+    /// <summary>
+    /// 字句解析ルートを表します。
+    /// </summary>
+    [DataContract]
+    public class LexRoot
+    {
+        #region -- Public Properties --
+
+        /// <summary>
+        /// 字句解析コードを展開する名前空間を取得または設定します。
+        /// </summary>
+        /// <value>名前空間を表す文字列。</value>
+        [DataMember(Name = "namespace")]
+        public string Namespace { get; set; }
+
+        /// <summary>
+        /// 字句解析コードを展開するクラス名を取得または設定します。
+        /// </summary>
+        /// <value>クラス名を表す文字列。</value>
+        [DataMember(Name = "class")]
+        public string ClassName { get; set; }
+
+
+
+        /// <summary>
+        /// 字句解析カテゴリの配列を取得または設定します。
+        /// </summary>
+        /// <value>字句解析カテゴリを格納する LexCategory クラスの配列。</value>
+        [DataMember(Name = "category")]
+        public LexCategory[] Category { get; set; }
+
+        #endregion
+    }
+
+    /// <summary>
+    /// 字句解析エントリをカテゴリとしてグループ化します。
+    /// </summary>
     [DataContract]
     public class LexCategory
     {
