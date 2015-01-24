@@ -70,43 +70,102 @@ namespace Lury.Lexgen
     [DataContract]
     public class LexCategory
     {
+        #region -- Public Properties --
+
+        /// <summary>
+        /// カテゴリ名を取得または設定します。
+        /// </summary>
+        /// <value>カテゴリ名を表す文字列。</value>
         [DataMember(Name = "name")]
         public string Name { get; set; }
 
+        /// <summary>
+        /// 字句解析エントリの配列を取得または設定します。
+        /// </summary>
+        /// <value>字句解析エントリを格納する LexEntry クラスの配列。</value>
         [DataMember(Name = "entry")]
         public LexEntry[] Entry { get; set; }
+
+        #endregion
     }
 
+    /// <summary>
+    /// 字句解析エントリを表します。
+    /// </summary>
     [DataContract]
     public class LexEntry
     {
+        #region -- Public Properties --
+
+        /// <summary>
+        /// トークンの抽出に用いる正規表現パターンを表す文字列を取得または設定します。
+        /// </summary>
+        /// <value>正規表現パターンを表す文字列。</value>
         [DataMember(Name = "regex")]
         public string Regex { get; set; }
 
+        /// <summary>
+        /// このエントリが示すトークンオブジェクトのコードを取得または設定します。
+        /// </summary>
+        /// <value>トークンオブジェクトのコード。</value>
         [DataMember(Name = "token")]
         public string Token { get; set; }
 
+        /// <summary>
+        /// 解析に用いられるオプションオブジェクトの配列を取得または設定します。
+        /// </summary>
+        /// <value>オプションオブジェクトの配列。</value>
         [DataMember(Name = "option")]
         public LexOptions[] Options { get; set; }
 
+        /// <summary>
+        /// 有効化するコンテキストスイッチ名を表す文字列の配列を取得または設定します。
+        /// </summary>
+        /// <value>有効化するコンテキストスイッチ名を表す文字列の配列。</value>
         [DataMember(Name = "switchOn")]
         public string[] ContextSwitchOn { get; set; }
 
+        /// <summary>
+        /// 無効化するコンテキストスイッチ名を表す文字列の配列を取得または設定します。
+        /// </summary>
+        /// <value>無効化するコンテキストスイッチ名を表す文字列の配列。</value>
         [DataMember(Name = "switchOff")]
         public string[] ContextSwitchOff { get; set; }
 
+        /// <summary>
+        /// トークンを抽出する条件としてのコンテキストスイッチ名を表す文字列の配列を
+        /// 取得または設定します。
+        /// </summary>
+        /// <value>抽出条件としてのコンテキストスイッチ名を表す文字列の配列。</value>
         [DataMember(Name = "context")]
         public string[] Context { get; set; }
+
+        #endregion
     }
 
+    /// <summary>
+    /// 字句解析時のオプションです。
+    /// </summary>
     [DataContract]
     public class LexOptions
     {
+        #region -- Public Properties --
+
+        /// <summary>
+        /// トークンに続く空白文字を無視するかの真偽値を取得または設定します。
+        /// </summary>
+        /// <value>無視する場合は <c>true</c>、それ以外のとき <c>false</c>。</value>
         [DataMember(Name = "ignoreAfterSpace")]
         public bool IgnoreAfterSpace { get; set; }
 
+        /// <summary>
+        /// 正規表現のオプションを単一行モードにするかの真偽値を取得または設定します。
+        /// </summary>
+        /// <value>単一行モードのとき <c>true</c>、それ以外のとき <c>false</c>。</value>
         [DataMember(Name = "singleline")]
         public bool Singleline { get; set; }
+
+        #endregion
     }
 }
 
