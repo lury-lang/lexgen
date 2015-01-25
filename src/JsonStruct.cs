@@ -52,7 +52,12 @@ namespace Lury.Lexgen
         [DataMember(Name = "class")]
         public string ClassName { get; set; }
 
-
+        /// <summary>
+        /// 使用する追加の名前空間を格納した配列を取得または設定します。
+        /// </summary>
+        /// <value>名前空間を表す文字列の配列。</value>
+        [DataMember(Name = "using")]
+        public string[] UsingNamespace { get; set; }
 
         /// <summary>
         /// 字句解析カテゴリの配列を取得または設定します。
