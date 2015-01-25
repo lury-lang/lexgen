@@ -32,6 +32,7 @@
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
+    <Reference Include="mscorlib" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -39,4 +40,12 @@
     <Compile Include="JsonStruct.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Skeleton\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Skeleton\lex-class.cssk">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
