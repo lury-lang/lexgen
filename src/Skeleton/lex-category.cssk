@@ -1,0 +1,8 @@
+﻿        /// <summary>
+        /// Category {0}.
+        /// </summary>
+        public static readonly ReadOnlyCollection<TokenEntry> {0} = new ReadOnlyCollection<TokenEntry>(new TokenEntry[] {
+        
+            {1}
+        
+        });
