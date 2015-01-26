@@ -103,6 +103,13 @@ namespace Lury.Lexgen
         #region -- Public Properties --
 
         /// <summary>
+        /// トークンの名前を取得または設定します。
+        /// </summary>
+        /// <value>トークンの名前を表す文字列。/value>
+        [DataMember(Name = "name")]
+        public string Name { get; set; }
+
+        /// <summary>
         /// トークンの抽出に用いる正規表現パターンを表す文字列を取得または設定します。
         /// </summary>
         /// <value>正規表現パターンを表す文字列。</value>
