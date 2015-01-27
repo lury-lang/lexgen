@@ -50,5 +50,8 @@
     <None Include="Skeleton\lex-category.cssk">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Skeleton\lex-entry.cssk">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
