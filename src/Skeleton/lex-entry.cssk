@@ -1,2 +1,4 @@
-﻿            new TokenEntry(name: {0}, pattern: {1}, regexOptions: {2}, tokenNumber: {3},
+﻿            // {0}
+            new TokenEntry(name: {0}, pattern: {1}, regexOptions: {2}, tokenNumber: {3},
                            contextSwitchOn: {4}, contextSwitchOff: {5}, context: {6}),
+            
