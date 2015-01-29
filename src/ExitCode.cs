@@ -46,19 +46,24 @@ namespace Lury.Lexgen
         public const int ParameterNotEnough = 1;
 
         /// <summary>
+        /// パラメータが多すぎます。
+        /// </summary>
+        public const int TooManyParameter = 2;
+
+        /// <summary>
         /// ファイルを作れません。
         /// </summary>
-        public const int FileCannotCreated = 2;
+        public const int FileCannotCreated = 3;
 
         /// <summary>
         /// ファイルを開けません。
         /// </summary>
-        public const int FileCannotOpened = 3;
+        public const int FileCannotOpened = 4;
 
         /// <summary>
         /// スケルトン記述が不正です。
         /// </summary>
-        public const int InvalidSkeleton = 4;
+        public const int InvalidSkeleton = 5;
     }
 }
 
