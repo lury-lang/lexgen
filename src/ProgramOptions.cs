@@ -216,11 +216,12 @@ namespace Lury.Lexgen.SampleRunner
         {
             var args = new []
             {
-                // TODO: スケルトンファイルのオプションについて書く
-
                 new {Command = "--", Text = "これ以降のオプションをすべてファイルパスとして認識します."},
                 new {Command = "    --color", Text = "カラー表示を有効化します."},
                 new {Command = "    --disable-color", Text = "カラー表示を無効化します."},
+                new {Command = "    --skeleton-category", Text = "カテゴリスケルトンファイルのパス."},
+                new {Command = "    --skeleton-class", Text = "クラススケルトンファイルのパス."},
+                new {Command = "    --skeleton-entry", Text = "エントリスケルトンファイルのパス."},
                 new {Command = "-e, --suppress-error", Text = "エラー表示を抑制します."},
                 new {Command = "-s, --silent", Text = "コンパイル出力以外の表示を抑制します."},
 
