@@ -146,7 +146,17 @@ namespace Lury.Lexgen.SampleRunner
 
                 switch (command)
                 {
-                // TODO: スケルトンファイルのオプションについて書く
+                    case "--skeleton-class":
+                        this.ClassSkeletonPath = arg;
+                        break;
+                    
+                    case "--skeleton-category":
+                        this.CategorySkeletonPath = arg;
+                        break;
+
+                    case "--skeleton-entry":
+                        this.EntrySkeletonPath = arg;
+                        break;
 
                     case "-h":
                     case "--help":
