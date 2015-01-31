@@ -29,6 +29,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 namespace Lury.Lexgen.SampleRunner
 {
@@ -119,10 +120,10 @@ namespace Lury.Lexgen.SampleRunner
 
             this.EnableColor = true;
 
-            // TODO: スケルトンファイルパスのデフォルト値
-            // this.ClassSkeletonPath = ...
-            // this.CategorySkeletonPath = ...
-            // this.EntrySkeletonPath = ...
+            string assemblyDir = Path.GetDirectoryName(typeof(MainClass).Assembly.Location);
+            this.ClassSkeletonPath = Path.Combine(assemblyDir, "./skeleton/lex-class.cssk");
+            this.CategorySkeletonPath = Path.Combine(assemblyDir, "./skeleton/lex-category.cssk");
+            this.EntrySkeletonPath = Path.Combine(assemblyDir, "./skeleton/lex-entry.cssk");
         }
 
         /// <summary>
