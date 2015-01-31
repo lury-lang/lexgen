@@ -97,7 +97,7 @@ namespace Lury.Lexgen.SampleRunner
 
         /// <summary>
         /// コマンドライン引数を指定して
-        /// 新しい <see cref="Lury.SampleRunner.ProgramOptions"/> クラスのインスタンスを初期化します。
+        /// 新しい <see cref="Lury.Lexgen.ProgramOptions"/> クラスのインスタンスを初期化します。
         /// </summary>
         /// <param name="args">コマンドライン引数。</param>
         public ProgramOptions(string[] args)
