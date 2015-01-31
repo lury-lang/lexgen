@@ -62,7 +62,7 @@ namespace Lury.Lexgen
         /// <summary>
         /// 字句解析カテゴリの配列を取得または設定します。
         /// </summary>
-        /// <value>字句解析カテゴリを格納する LexCategory クラスの配列。</value>
+        /// <value>字句解析カテゴリを格納する <see cref="Lury.Lexgen.LexCategory"/> クラスの配列。</value>
         [DataMember(Name = "category")]
         public LexCategory[] Category { get; set; }
 
@@ -87,7 +87,7 @@ namespace Lury.Lexgen
         /// <summary>
         /// 字句解析エントリの配列を取得または設定します。
         /// </summary>
-        /// <value>字句解析エントリを格納する LexEntry クラスの配列。</value>
+        /// <value>字句解析エントリを格納する <see cref="Lury.Lexgen.LexEntry"/> クラスの配列。</value>
         [DataMember(Name = "entry")]
         public LexEntry[] Entry { get; set; }
 
@@ -126,7 +126,7 @@ namespace Lury.Lexgen
         /// <summary>
         /// 解析に用いられるオプションオブジェクトの配列を取得または設定します。
         /// </summary>
-        /// <value>オプションオブジェクトの配列。</value>
+        /// <value>オプションオブジェクト <see cref="Lury.Lexgen.LexOptions"/> の配列。</value>
         [DataMember(Name = "option")]
         public LexOptions[] Options { get; set; }
 
