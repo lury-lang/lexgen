@@ -34,6 +34,45 @@ namespace Lury.Lexgen
     {
         public static void Main(string[] args)
         {
+            if (args.Length == 0)
+            {
+                ShowUsage();
+                Environment.Exit(ExitCode.ParameterNotEnough);
+            }
         }
+
+        #region -- Private Static Methods --
+
+        /// <summary>
+        /// このプログラムの使用法を表示します。
+        /// </summary>
+        private static void ShowUsage()
+        {
+            var executeFilePath = GetExecuteFilePath();
+            Console.WriteLine("{0}: {1} [OPTION]... INPUT OUTPUT", "使用法", executeFilePath);
+        }
+
+        /// <summary>
+        /// このプログラムの実行ファイル名を取得します。
+        /// </summary>
+        /// <returns>ファイル名を表す文字列。</returns>
+        private static string GetExecuteFilePath()
+        {
+            return System.Diagnostics.Process.GetCurrentProcess().MainModule.ModuleName;
+        }
+
+        /// <summary>
+        /// プログラムのヘルプを表示します。
+        /// </summary>
+        private static void ShowHelp()
+        {
+            ShowUsage();
+            Console.WriteLine();
+            ProgramOptions.ShowHelp();
+            Console.WriteLine();
+            Console.WriteLine("プログラムのリポジトリ: <https://github.com/lury-lang/lexgen>");
+        }
+
+        #endregion
     }
 }
