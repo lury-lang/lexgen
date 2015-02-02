@@ -31,7 +31,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 
-namespace Lury.Lexgen.SampleRunner
+namespace Lury.Lexgen
 {
     class ProgramOptions
     {
