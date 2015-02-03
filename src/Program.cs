@@ -27,6 +27,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.IO;
 
 namespace Lury.Lexgen
 {
@@ -42,6 +43,37 @@ namespace Lury.Lexgen
         }
 
         #region -- Private Static Methods --
+
+        /// <summary>
+        /// コマンドラインオプションのファイルを検査します。
+        /// </summary>
+        /// <param name="options">コマンドラインオプションが格納された <see cref="Lury.Lexgen.ProgramOptions"/> オブジェクト。</param>
+        private static void CheckOptions(ProgramOptions options)
+        {
+            if (!File.Exists(options.InputJsonPath))
+            {
+                Console.WriteLine("入力ファイル {0} が存在しません.", options.InputJsonPath);
+                Environment.Exit(ExitCode.FileCannotOpened);
+            }
+
+            if (!File.Exists(options.ClassSkeletonPath))
+            {
+                Console.WriteLine("クラススケルトン ファイル {0} が存在しません.", options.ClassSkeletonPath);
+                Environment.Exit(ExitCode.FileCannotOpened);
+            }
+
+            if (!File.Exists(options.CategorySkeletonPath))
+            {
+                Console.WriteLine("カテゴリスケルトン ファイル {0} が存在しません.", options.CategorySkeletonPath);
+                Environment.Exit(ExitCode.FileCannotOpened);
+            }
+
+            if (!File.Exists(options.EntrySkeletonPath))
+            {
+                Console.WriteLine("エントリスケルトン ファイル {0} が存在しません.", options.EntrySkeletonPath);
+                Environment.Exit(ExitCode.FileCannotOpened);
+            }
+        }
 
         /// <summary>
         /// このプログラムの使用法を表示します。
