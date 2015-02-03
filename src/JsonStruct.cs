@@ -124,11 +124,11 @@ namespace Lury.Lexgen
         public string Token { get; set; }
 
         /// <summary>
-        /// 解析に用いられるオプションオブジェクトの配列を取得または設定します。
+        /// 解析に用いられるオプションオブジェクトを取得または設定します。
         /// </summary>
-        /// <value>オプションオブジェクト <see cref="Lury.Lexgen.LexOptions"/> の配列。</value>
+        /// <value>オプションオブジェクト <see cref="Lury.Lexgen.LexOptions"/>。</value>
         [DataMember(Name = "option")]
-        public LexOptions[] Options { get; set; }
+        public LexOptions Option { get; set; }
 
         /// <summary>
         /// 有効化するコンテキストスイッチ名を表す文字列の配列を取得または設定します。
