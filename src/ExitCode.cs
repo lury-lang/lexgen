@@ -64,6 +64,11 @@ namespace Lury.Lexgen
         /// スケルトン記述が不正です。
         /// </summary>
         public const int InvalidSkeleton = 5;
+
+        /// <summary>
+        /// 不正な JSON ファイルです。
+        /// </summary>
+        public const int InvalidJson = 6;
     }
 }
 
