@@ -45,6 +45,16 @@ namespace Lury.Lexgen
         #region -- Private Static Methods --
 
         /// <summary>
+        /// 字句オプションに対する正規表現オプションを表す文字列を生成します。
+        /// </summary>
+        /// <returns>正規表現オプションを表す文字列。</returns>
+        /// <param name="option">字句オプションを表す <see cref="Lury.Lexgen.LexOptions"/> オブジェクト。</param>
+        private static string CreateRegexOptionsString(LexOptions option)
+        {
+            return option.Singleline ? "RegexOptions.Singleline" : "RegexOptions.None";
+        }
+
+        /// <summary>
         /// コマンドラインオプションのファイルを検査します。
         /// </summary>
         /// <param name="options">コマンドラインオプションが格納された <see cref="Lury.Lexgen.ProgramOptions"/> オブジェクト。</param>
