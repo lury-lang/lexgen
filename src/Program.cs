@@ -28,6 +28,7 @@
 
 using System;
 using System.IO;
+using System.Linq;
 
 namespace Lury.Lexgen
 {
@@ -43,6 +44,16 @@ namespace Lury.Lexgen
         }
 
         #region -- Private Static Methods --
+
+        /// <summary>
+        /// 文字列の配列を結合した文字列を生成します。
+        /// </summary>
+        /// <returns>文字列の配列が結合された文字列。</returns>
+        /// <param name="array">結合される文字列の配列。</param>
+        private static string CreateStringArrayString(string[] array)
+        {
+            return string.Join(", ", array.Select(s => "\"" + s + "\""));
+        }
 
         /// <summary>
         /// 字句オプションに対する正規表現オプションを表す文字列を生成します。
