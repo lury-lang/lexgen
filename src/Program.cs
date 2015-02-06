@@ -46,6 +46,27 @@ namespace Lury.Lexgen
         #region -- Private Static Methods --
 
         /// <summary>
+        /// 指定されたスケルトンファイルを読み込み、文字列として取得します。
+        /// </summary>
+        /// <returns>読み込まれたファイルの内容。</returns>
+        /// <param name="path">読み込まれるスケルトンファイルのパス。</param>
+        private static string ReadSkeletonFile(string path)
+        {
+            try
+            {
+                return File.ReadAllText(path);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("スケルトンファイルを読み取れません. {0}", ex.Message);
+                Environment.Exit(ExitCode.FileCannotOpened);
+            }
+
+            // cannot reach
+            return null;
+        }
+
+        /// <summary>
         /// 文字列の配列を結合した文字列を生成します。
         /// </summary>
         /// <returns>文字列の配列が結合された文字列。</returns>
