@@ -28,6 +28,7 @@
 
 using System;
 using System.IO;
+using System.Text;
 using System.Linq;
 
 namespace Lury.Lexgen
@@ -44,6 +45,46 @@ namespace Lury.Lexgen
         }
 
         #region -- Private Static Methods --
+
+        /// <summary>
+        /// カテゴリスケルトンを使ってコードを自動生成します。
+        /// </summary>
+        /// <returns>自動生成コードを表す文字列。</returns>
+        /// <param name="options">プログラムのオプションを表す <see cref="Lury.Lexgen.ProgramOptions"/> オブジェクト。</param>
+        /// <param name="lexRoot"><see cref="Lury.Lexgen.LexRoot"/> オブジェクト。</param>
+        private static string CreateCategoryString(ProgramOptions options, LexRoot lexRoot)
+        {
+            string entryString = ReadSkeletonFile(options.EntrySkeletonPath);
+            string categoryString = ReadSkeletonFile(options.CategorySkeletonPath);
+            StringBuilder entriesString = new StringBuilder();
+            StringBuilder categoriesString = new StringBuilder();
+
+            // categoriesString.Clear();
+
+            foreach (var category in lexRoot.Category)
+            {
+                entriesString.Clear();
+
+                foreach (var entry in category.Entry)
+                {
+                    entriesString.AppendFormat(entryString,
+                                               entry.Name,
+                                               entry.Regex,
+                                               CreateRegexOptionsString(entry.Option),
+                                               entry.Token,
+                                               entry.Option.IgnoreAfterSpace.ToString().ToLower(),
+                                               CreateStringArrayString(entry.ContextSwitchOn),
+                                               CreateStringArrayString(entry.ContextSwitchOff),
+                                               CreateStringArrayString(entry.Context));
+                }
+
+                categoriesString.AppendFormat(categoryString,
+                                              category.Name,
+                                              entriesString.ToString());
+            }
+
+            return categoriesString.ToString();
+        }
 
         /// <summary>
         /// 指定されたスケルトンファイルを読み込み、文字列として取得します。
