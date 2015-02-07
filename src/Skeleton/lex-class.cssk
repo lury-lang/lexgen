@@ -15,13 +15,13 @@ using System.Collections.ObjectModel;
 {3}
 
 namespace {0}
-{
+{{
     partial class {1}
-    {
+    {{
         #region Categories
 
         {2}
 
         #endregion
-    } 
-}
+    }}
+}}
