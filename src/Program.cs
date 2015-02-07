@@ -28,6 +28,7 @@
 
 using System;
 using System.IO;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Linq;
 
@@ -41,6 +42,45 @@ namespace Lury.Lexgen
             {
                 ShowUsage();
                 Environment.Exit(ExitCode.ParameterNotEnough);
+            }
+
+            ProgramOptions options = new ProgramOptions(args);
+
+            if (string.IsNullOrWhiteSpace(options.InputJsonPath) ||
+                string.IsNullOrWhiteSpace(options.OutputCsPath))
+            {
+                ShowUsage();
+                Environment.Exit(ExitCode.ParameterNotEnough);
+            }
+
+            CheckOptions(options);
+            LexRoot root = null;
+
+            try
+            {
+                using (FileStream fs = new FileStream(options.InputJsonPath, FileMode.Open))
+                {
+                    DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(LexRoot));
+                    root = (LexRoot)ser.ReadObject(fs);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("入力ファイル {0} を読み取れません. {1}", options.InputJsonPath, ex.Message);
+                Environment.Exit(ExitCode.FileCannotOpened);
+            }
+
+            string categoryString = CreateCategoryString(options, root);
+            string classString = ReadSkeletonFile(options.ClassSkeletonPath);
+
+            using (FileStream fs = new FileStream(options.OutputCsPath, FileMode.Create))
+            using (BinaryWriter bw = new BinaryWriter(fs, Encoding.UTF8))
+            {
+                bw.Write(string.Format(classString,
+                                       root.Namespace,
+                                       root.ClassName,
+                                       categoryString,
+                                       root.UsingNamespace));
             }
         }
 
