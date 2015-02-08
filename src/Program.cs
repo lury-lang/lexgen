@@ -74,9 +74,9 @@ namespace Lury.Lexgen
             string classString = ReadSkeletonFile(options.ClassSkeletonPath);
 
             using (FileStream fs = new FileStream(options.OutputCsPath, FileMode.Create))
-            using (BinaryWriter bw = new BinaryWriter(fs, Encoding.UTF8))
+            using (StreamWriter sw = new StreamWriter(fs, Encoding.UTF8))
             {
-                bw.Write(string.Format(classString,
+                sw.Write(string.Format(classString,
                                        root.Namespace,
                                        root.ClassName,
                                        categoryString,
