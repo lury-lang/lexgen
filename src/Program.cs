@@ -80,7 +80,7 @@ namespace Lury.Lexgen
                                        root.Namespace,
                                        root.ClassName,
                                        categoryString,
-                                       root.UsingNamespace));
+                                       string.Join("\n", root.UsingNamespace)));
             }
         }
 
