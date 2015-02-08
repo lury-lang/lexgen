@@ -121,9 +121,9 @@ namespace Lury.Lexgen
             this.EnableColor = true;
 
             string assemblyDir = Path.GetDirectoryName(typeof(MainClass).Assembly.Location);
-            this.ClassSkeletonPath = Path.Combine(assemblyDir, "./skeleton/lex-class.cssk");
-            this.CategorySkeletonPath = Path.Combine(assemblyDir, "./skeleton/lex-category.cssk");
-            this.EntrySkeletonPath = Path.Combine(assemblyDir, "./skeleton/lex-entry.cssk");
+            this.ClassSkeletonPath = Path.Combine(assemblyDir, "./Skeleton/lex-class.cssk");
+            this.CategorySkeletonPath = Path.Combine(assemblyDir, "./Skeleton/lex-category.cssk");
+            this.EntrySkeletonPath = Path.Combine(assemblyDir, "./Skeleton/lex-entry.cssk");
         }
 
         /// <summary>
