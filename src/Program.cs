@@ -66,12 +66,14 @@ namespace Lury.Lexgen
             }
             catch (System.Runtime.Serialization.SerializationException ex)
             {
-                Console.WriteLine("入力ファイル {0} を読み取れません. JSONとして読み込めません. {1}", options.InputJsonPath, ex.InnerException.Message);
+                Console.WriteLine("入力ファイル {0} を読み取れません. JSONとして読み込めません.", options.InputJsonPath);
+                Console.WriteLine(ex.InnerException.Message);
                 Environment.Exit(ExitCode.InvalidJson);
             }
             catch (IOException ex)
             {
-                Console.WriteLine("入力ファイル {0} を読み取れません. {1}", options.InputJsonPath, ex.Message);
+                Console.WriteLine("入力ファイル {0} を読み取れません.", ex.Message);
+                Console.WriteLine(ex.Message);
                 Environment.Exit(ExitCode.FileCannotOpened);
             }
 
