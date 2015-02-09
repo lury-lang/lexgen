@@ -64,7 +64,12 @@ namespace Lury.Lexgen
                     root = (LexRoot)ser.ReadObject(fs);
                 }
             }
-            catch (Exception ex)
+            catch (System.Runtime.Serialization.SerializationException ex)
+            {
+                Console.WriteLine("入力ファイル {0} を読み取れません. JSONとして読み込めません. {1}", options.InputJsonPath, ex.InnerException.Message);
+                Environment.Exit(ExitCode.InvalidJson);
+            }
+            catch (IOException ex)
             {
                 Console.WriteLine("入力ファイル {0} を読み取れません. {1}", options.InputJsonPath, ex.Message);
                 Environment.Exit(ExitCode.FileCannotOpened);
