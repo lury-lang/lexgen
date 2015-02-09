@@ -46,13 +46,6 @@ namespace Lury.Lexgen
 
             ProgramOptions options = new ProgramOptions(args);
 
-            if (string.IsNullOrWhiteSpace(options.InputJsonPath) ||
-                string.IsNullOrWhiteSpace(options.OutputCsPath))
-            {
-                ShowUsage();
-                Environment.Exit(ExitCode.ParameterNotEnough);
-            }
-
             CheckOptions(options);
             LexRoot root = null;
 
@@ -206,6 +199,13 @@ namespace Lury.Lexgen
         /// <param name="options">コマンドラインオプションが格納された <see cref="Lury.Lexgen.ProgramOptions"/> オブジェクト。</param>
         private static void CheckOptions(ProgramOptions options)
         {
+            if (string.IsNullOrWhiteSpace(options.InputJsonPath) ||
+                string.IsNullOrWhiteSpace(options.OutputCsPath))
+            {
+                ShowUsage();
+                Environment.Exit(ExitCode.ParameterNotEnough);
+            }
+
             if (!File.Exists(options.InputJsonPath))
             {
                 Console.WriteLine("入力ファイル {0} が存在しません.", options.InputJsonPath);
