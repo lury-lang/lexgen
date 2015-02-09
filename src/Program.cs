@@ -70,6 +70,7 @@ namespace Lury.Lexgen
                 Environment.Exit(ExitCode.FileCannotOpened);
             }
 
+            CheckLexRoot(root);
             string categoryString = CreateCategoryString(options, root);
             string classString = ReadSkeletonFile(options.ClassSkeletonPath);
 
@@ -165,6 +166,31 @@ namespace Lury.Lexgen
         private static string CreateRegexOptionsString(LexOptions option)
         {
             return option.Singleline ? "RegexOptions.Singleline" : "RegexOptions.None";
+        }
+
+        /// <summary>
+        /// 字句ルートオブジェクトが有効なプロパティを持っているかを検査します。
+        /// </summary>
+        /// <param name="root">字句ルートを表す <see cref="Lury.Lexgen.LexRoot"/> オブジェクト。</param>
+        private static void CheckLexRoot(LexRoot root)
+        {
+            if (root.Category == null)
+            {
+                Console.WriteLine("カテゴリを null または未指定にすることはできません.");
+                Environment.Exit(ExitCode.InvalidJson);
+            }
+
+            if (string.IsNullOrWhiteSpace(root.Namespace))
+            {
+                Console.WriteLine("名前空間名を null、空の文字列または未指定にすることはできません.");
+                Environment.Exit(ExitCode.InvalidJson);
+            }
+
+            if (string.IsNullOrWhiteSpace(root.ClassName))
+            {
+                Console.WriteLine("クラス名を null、空の文字列または未指定にすることはできません.");
+                Environment.Exit(ExitCode.InvalidJson);
+            }
         }
 
         /// <summary>
