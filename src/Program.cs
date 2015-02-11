@@ -155,7 +155,10 @@ namespace Lury.Lexgen
         /// <param name="array">結合される文字列の配列。</param>
         private static string CreateStringArrayString(string[] array)
         {
-            return string.Join(", ", array.Select(s => "\"" + s + "\""));
+            if (array == null)
+                return "";
+            else
+                return string.Join(", ", array.Select(s => "\"" + s + "\""));
         }
 
         /// <summary>
