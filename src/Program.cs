@@ -165,7 +165,10 @@ namespace Lury.Lexgen
         /// <param name="option">字句オプションを表す <see cref="Lury.Lexgen.LexOptions"/> オブジェクト。</param>
         private static string CreateRegexOptionsString(LexOptions option)
         {
-            return option.Singleline ? "RegexOptions.Singleline" : "RegexOptions.None";
+            if (option == null)
+                return "RegexOptions.None";
+            else
+                return option.Singleline ? "RegexOptions.Singleline" : "RegexOptions.None";
         }
 
         /// <summary>
