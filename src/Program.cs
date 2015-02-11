@@ -113,7 +113,7 @@ namespace Lury.Lexgen
                                                entry.Regex,
                                                CreateRegexOptionsString(entry.Option),
                                                entry.Token,
-                                               entry.Option.IgnoreAfterSpace.ToString().ToLower(),
+                                               CreateIgnoreAfterSpaceString(entry.Option),
                                                CreateStringArrayString(entry.ContextSwitchOn),
                                                CreateStringArrayString(entry.ContextSwitchOff),
                                                CreateStringArrayString(entry.Context));
@@ -125,6 +125,19 @@ namespace Lury.Lexgen
             }
 
             return categoriesString.ToString();
+        }
+
+        /// <summary>
+        /// IgnoreAfterSpace オプションに対する真偽値を表す文字列を生成します。
+        /// </summary>
+        /// <returns>正規表現オプションを表す文字列。</returns>
+        /// <param name="option">IgnoreAfterSpace オプションに対する真偽値を表す文字列。</param>
+        private static string CreateIgnoreAfterSpaceString(LexOptions option)
+        {
+            if (option == null)
+                return "false";
+            else
+                return option.IgnoreAfterSpace.ToString().ToLower();
         }
 
         /// <summary>
