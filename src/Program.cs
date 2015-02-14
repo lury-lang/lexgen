@@ -169,9 +169,9 @@ namespace Lury.Lexgen
         private static string CreateStringArrayString(string[] array)
         {
             if (array == null)
-                return "";
+                return "null";
             else
-                return string.Join(", ", array.Select(s => "\"" + s + "\""));
+                return "new string []{ " + string.Join(", ", array.Select(s => "\"" + s + "\"")) + "}";
         }
 
         /// <summary>
