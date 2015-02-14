@@ -1,5 +1,5 @@
 ﻿            // {0}
             new TokenEntry(name: "{0}", pattern: @"{1}",
                            regexOptions: {2}, tokenNumber: {3}, ignoreAfterSpace: {4},
-                           contextSwitchOn: [{5}], contextSwitchOff: [{6}], context: [{7}]),
+                           contextSwitchOn: {5}, contextSwitchOff: {6}, context: {7}),
             
