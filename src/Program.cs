@@ -114,9 +114,9 @@ namespace Lury.Lexgen
                                                CreateRegexOptionsString(entry.Option),
                                                entry.Token,
                                                CreateIgnoreAfterSpaceString(entry.Option),
-                                               CreateStringArrayString(entry.ContextSwitchOn),
-                                               CreateStringArrayString(entry.ContextSwitchOff),
-                                               CreateStringArrayString(entry.Context));
+                                               entry.ContextSwitchOn.ToArrayString(),
+                                               entry.ContextSwitchOff.ToArrayString(),
+                                               entry.Context.ToArrayString());
                 }
 
                 categoriesString.AppendFormat(categoryString,
@@ -159,19 +159,6 @@ namespace Lury.Lexgen
 
             // cannot reach
             return null;
-        }
-
-        /// <summary>
-        /// 文字列の配列を結合した文字列を生成します。
-        /// </summary>
-        /// <returns>文字列の配列が結合された文字列。</returns>
-        /// <param name="array">結合される文字列の配列。</param>
-        private static string CreateStringArrayString(string[] array)
-        {
-            if (array == null)
-                return "null";
-            else
-                return "new string []{ " + string.Join(", ", array.Select(s => "\"" + s + "\"")) + "}";
         }
 
         /// <summary>
