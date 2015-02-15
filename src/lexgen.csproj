@@ -40,6 +40,7 @@
     <Compile Include="JsonStruct.cs" />
     <Compile Include="ExitCode.cs" />
     <Compile Include="ProgramOptions.cs" />
+    <Compile Include="Extension.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
