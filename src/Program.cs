@@ -49,6 +49,7 @@ namespace Lury.Lexgen
             CheckOptions(options);
             LexRoot root = null;
 
+            #region 入力ファイル読み取り
             try
             {
                 using (FileStream fs = new FileStream(options.InputJsonPath, FileMode.Open))
@@ -69,135 +70,27 @@ namespace Lury.Lexgen
                 Console.WriteLine(ex.Message);
                 Environment.Exit(ExitCode.FileCannotOpened);
             }
+            #endregion
 
-            CheckLexRoot(root);
-            string categoryString = CreateCategoryString(options, root);
-            string classString = ReadSkeletonFile(options.ClassSkeletonPath);
-
-            using (FileStream fs = new FileStream(options.OutputCsPath, FileMode.Create))
-            using (StreamWriter sw = new StreamWriter(fs, Encoding.UTF8))
+            #region 出力ファイル書き込み
+            try
             {
-                sw.Write(string.Format(classString,
-                                       root.Namespace,
-                                       root.ClassName,
-                                       categoryString,
-                                       string.Join("\n", root.UsingNamespace)));
+                using (FileStream fs = new FileStream(options.OutputCsPath, FileMode.Create))
+                {
+                    var generator = new Generator(options, root);
+                    generator.Generate(fs);
+                }
             }
+            catch (IOException ex)
+            {
+                Console.WriteLine("出力ファイル {0} に書き込めません.", options.OutputCsPath);
+                Console.WriteLine(ex.Message);
+                Environment.Exit(ExitCode.FileCannotCreated);
+            }
+            #endregion
         }
 
         #region -- Private Static Methods --
-
-        /// <summary>
-        /// カテゴリスケルトンを使ってコードを自動生成します。
-        /// </summary>
-        /// <returns>自動生成コードを表す文字列。</returns>
-        /// <param name="options">プログラムのオプションを表す <see cref="Lury.Lexgen.ProgramOptions"/> オブジェクト。</param>
-        /// <param name="lexRoot"><see cref="Lury.Lexgen.LexRoot"/> オブジェクト。</param>
-        private static string CreateCategoryString(ProgramOptions options, LexRoot lexRoot)
-        {
-            string entryString = ReadSkeletonFile(options.EntrySkeletonPath);
-            string categoryString = ReadSkeletonFile(options.CategorySkeletonPath);
-            StringBuilder entriesString = new StringBuilder();
-            StringBuilder categoriesString = new StringBuilder();
-
-            // categoriesString.Clear();
-
-            foreach (var category in lexRoot.Category)
-            {
-                entriesString.Clear();
-
-                foreach (var entry in category.Entry)
-                {
-                    entriesString.AppendFormat(entryString,
-                                               entry.Name,
-                                               entry.Regex,
-                                               CreateRegexOptionsString(entry.Option),
-                                               entry.Token,
-                                               CreateIgnoreAfterSpaceString(entry.Option),
-                                               entry.ContextSwitchOn.ToArrayString(),
-                                               entry.ContextSwitchOff.ToArrayString(),
-                                               entry.Context.ToArrayString());
-                }
-
-                categoriesString.AppendFormat(categoryString,
-                                              category.Name,
-                                              entriesString.ToString());
-            }
-
-            return categoriesString.ToString();
-        }
-
-        /// <summary>
-        /// IgnoreAfterSpace オプションに対する真偽値を表す文字列を生成します。
-        /// </summary>
-        /// <returns>正規表現オプションを表す文字列。</returns>
-        /// <param name="option">IgnoreAfterSpace オプションに対する真偽値を表す文字列。</param>
-        private static string CreateIgnoreAfterSpaceString(LexOptions option)
-        {
-            if (option == null)
-                return "false";
-            else
-                return option.IgnoreAfterSpace.ToString().ToLower();
-        }
-
-        /// <summary>
-        /// 指定されたスケルトンファイルを読み込み、文字列として取得します。
-        /// </summary>
-        /// <returns>読み込まれたファイルの内容。</returns>
-        /// <param name="path">読み込まれるスケルトンファイルのパス。</param>
-        private static string ReadSkeletonFile(string path)
-        {
-            try
-            {
-                return File.ReadAllText(path);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("スケルトンファイルを読み取れません. {0}", ex.Message);
-                Environment.Exit(ExitCode.FileCannotOpened);
-            }
-
-            // cannot reach
-            return null;
-        }
-
-        /// <summary>
-        /// 字句オプションに対する正規表現オプションを表す文字列を生成します。
-        /// </summary>
-        /// <returns>正規表現オプションを表す文字列。</returns>
-        /// <param name="option">字句オプションを表す <see cref="Lury.Lexgen.LexOptions"/> オブジェクト。</param>
-        private static string CreateRegexOptionsString(LexOptions option)
-        {
-            if (option == null)
-                return "RegexOptions.None";
-            else
-                return option.Singleline ? "RegexOptions.Singleline" : "RegexOptions.None";
-        }
-
-        /// <summary>
-        /// 字句ルートオブジェクトが有効なプロパティを持っているかを検査します。
-        /// </summary>
-        /// <param name="root">字句ルートを表す <see cref="Lury.Lexgen.LexRoot"/> オブジェクト。</param>
-        private static void CheckLexRoot(LexRoot root)
-        {
-            if (root.Category == null)
-            {
-                Console.WriteLine("カテゴリを null または未指定にすることはできません.");
-                Environment.Exit(ExitCode.InvalidJson);
-            }
-
-            if (string.IsNullOrWhiteSpace(root.Namespace))
-            {
-                Console.WriteLine("名前空間名を null、空の文字列または未指定にすることはできません.");
-                Environment.Exit(ExitCode.InvalidJson);
-            }
-
-            if (string.IsNullOrWhiteSpace(root.ClassName))
-            {
-                Console.WriteLine("クラス名を null、空の文字列または未指定にすることはできません.");
-                Environment.Exit(ExitCode.InvalidJson);
-            }
-        }
 
         /// <summary>
         /// コマンドラインオプションのファイルを検査します。
