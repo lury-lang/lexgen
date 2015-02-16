@@ -65,7 +65,7 @@ namespace Lury.Lexgen
             }
             catch (IOException ex)
             {
-                Console.WriteLine("入力ファイル {0} を読み取れません.", ex.Message);
+                Console.WriteLine("入力ファイル {0} を読み取れません.", options.InputJsonPath);
                 Console.WriteLine(ex.Message);
                 Environment.Exit(ExitCode.FileCannotOpened);
             }
