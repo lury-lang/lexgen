@@ -36,6 +36,8 @@ namespace Lury.Lexgen
 {
     class MainClass
     {
+        #region -- Public Static Methods --
+
         public static void Main(string[] args)
         {
             if (args.Length == 0)
@@ -89,6 +91,8 @@ namespace Lury.Lexgen
             }
             #endregion
         }
+
+        #endregion
 
         #region -- Private Static Methods --
 
