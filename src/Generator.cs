@@ -32,15 +32,34 @@ using System.IO;
 
 namespace Lury.Lexgen
 {
+    /// <summary>
+    /// 字句リストを自動生成するための機能を提供します。
+    /// </summary>
     class Generator
     {
         #region -- Public Properties --
+
+        /// <summary>
+        /// プログラムのオプションを取得します。
+        /// </summary>
+        /// <value>プログラムのオプションを表す <see cref="Lury.Lexgen.ProgramOptions"/> オブジェクト。</value>
         public ProgramOptions Options { get; private set; }
 
+        /// <summary>
+        /// 字句構造ルートを取得します。
+        /// </summary>
+        /// <value>字句構造ルートを表す <see cref="Lury.Lexgen.LexRoot"/> オブジェクト。</value>
         public LexRoot LexRoot { get; private set; }
+
         #endregion
 
         #region -- Constructors --
+
+        /// <summary>
+        /// 新しい <see cref="Lury.Lexgen.Generator"/> クラスのインスタンスを初期化します。
+        /// </summary>
+        /// <param name="options">プログラムのオプションを表す <see cref="Lury.Lexgen.ProgramOptions"/> オブジェクト。</param>
+        /// <param name="lexRoot">字句構造ルートを表す <see cref="Lury.Lexgen.LexRoot"/> オブジェクト。</param>
         public Generator(ProgramOptions options, LexRoot lexRoot)
         {
             this.Options = options;
@@ -48,10 +67,15 @@ namespace Lury.Lexgen
 
             this.CheckLexRoot();
         }
+
         #endregion
 
         #region -- Public Methods --
 
+        /// <summary>
+        /// 書き込みストリームを指定して字句リストを生成します。
+        /// </summary>
+        /// <param name="stream">書き込み可能な <see cref="System.IO.Stream"/> オブジェクト。</param>
         public void Generate(Stream stream)
         {
             string categoryString = this.CreateCategoryString();
@@ -70,6 +94,7 @@ namespace Lury.Lexgen
         #endregion
 
         #region -- Private Methods --
+
         /// <summary>
         /// カテゴリスケルトンを使ってコードを自動生成します。
         /// </summary>
@@ -131,9 +156,11 @@ namespace Lury.Lexgen
                 Environment.Exit(ExitCode.InvalidJson);
             }
         }
+
         #endregion
 
         #region -- Private Static Methods --
+
         /// <summary>
         /// IgnoreAfterSpace オプションに対する真偽値を表す文字列を生成します。
         /// </summary>
@@ -180,6 +207,7 @@ namespace Lury.Lexgen
             else
                 return option.Singleline ? "RegexOptions.Singleline" : "RegexOptions.None";
         }
+
         #endregion
     }
 }
